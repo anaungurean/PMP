@@ -34,7 +34,7 @@ def timp_servire_sub_15_minute(alpha, numar_simulari, lambda_poisson, mu_normal,
     return timp_servire_95
 
 alpha_max = 0
-alpha_values = np.linspace(10, 0, 1000)  # Încercăm valori de la 10 la 0
+alpha_values = np.linspace(10, 0, 1000)   
 for alpha in alpha_values:
     timp_servire_95 = timp_servire_sub_15_minute(alpha, numar_simulari, lambda_poisson, mu_normal, sigma_normal)
     print(f"Testăm α = {alpha:.3f}, timpul de servire pentru 95% dintre clienți = {timp_servire_95:.3f} minute")
