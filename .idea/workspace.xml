@@ -4,7 +4,63 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a856747-5895-449e-a3d3-ef0cd92b7fff" name="Changes" comment="" />
+    <list default="true" id="2a856747-5895-449e-a3d3-ef0cd92b7fff" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Cursuri - Teorie/Curs 1 - Introducere in programarea probabilistica" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cursuri - Teorie/Curs 2 - Modele grafice. Rețele Bayesiene" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cursuri - Teorie/Curs 3 - Inferenta Bayesiana" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cursuri - Teorie/Curs 4 - Programare probabilista folosind PyMC" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cursuri - Teorie/Curs 5 - Programare probabilistă folosind PyMC - continuare.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cursuri - Teorie/Curs 6 - Regresie Liniara.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cursuri - Teorie/Curs4 - model.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cursuri - Teorie/Curs5-Comparatia_Grupurilor.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cursuri - Teorie/Curs5-Inferenta_Gaussiana-model.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cursuri - Teorie/Curs5-Inferenta_Robusta-model.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Laboratoare - Modele/Lab01/Lab01.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Laboratoare - Modele/Lab02/example.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Laboratoare - Modele/Lab02/solutie_ex1.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Laboratoare - Modele/Lab02/solutie_ex2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Laboratoare - Modele/Lab02/solutie_ex3.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Laboratoare - Modele/Lab03/exemplu_pgmpy.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Laboratoare - Modele/Lab03/exemplu_pymc.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Laboratoare - Modele/Lab03/solutie.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Laboratoare - Modele/Lab04/solutie.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Laboratoare - Modele/Lab05/solutie.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Laboratoare - Modele/Lab06/solutie.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Laboratoare - Modele/Lab07/exemplu.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Laboratoare - Modele/Lab07/solutie.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Laboratoare_rezolvate_tema/Lab005/Tema.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Laboratoare_rezolvate_tema/Lab005/trafic.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Laboratoare_rezolvate_tema/Lab007/auto-mpg.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Teorie generala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab004/Screenshot 2023-10-25 090535.png" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratoare_rezolvate_tema/Lab004/Screenshot 2023-10-25 090535.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab004/Tema.py" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratoare_rezolvate_tema/Lab004/Tema.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab005/Bonus.py" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratoare_rezolvate_tema/Lab005/Bonus.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab005/Tema.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab005/img.png" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratoare_rezolvate_tema/Lab005/img.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab005/img_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratoare_rezolvate_tema/Lab005/img_1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab005/img_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratoare_rezolvate_tema/Lab005/img_2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab005/trafic.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratoare - Modele/Lab05/trafic.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab006/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratoare_rezolvate_tema/Lab006/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab006/Tema.py" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratoare_rezolvate_tema/Lab006/Tema.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab006/img.png" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratoare_rezolvate_tema/Lab006/img.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab007/Tema.py" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratoare_rezolvate_tema/Lab007/Tema.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab007/auto-mpg.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratoare - Modele/Lab07/auto-mpg.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab007/img.png" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratoare_rezolvate_tema/Lab007/img.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab01/hello_world.py" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratoare_rezolvate_tema/Lab001/hello_world.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab02/Ex1.png" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratoare_rezolvate_tema/Lab002/Ex1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab02/Ex2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratoare_rezolvate_tema/Lab002/Ex2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab02/Ex3.png" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratoare_rezolvate_tema/Lab002/Ex3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab02/TemaEX1.py" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratoare_rezolvate_tema/Lab002/TemaEX1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab02/TemaEX2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratoare_rezolvate_tema/Lab002/TemaEX2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab02/TemaEX3.py" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratoare_rezolvate_tema/Lab002/TemaEX3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab02/example.py" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratoare_rezolvate_tema/Lab002/example.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab03/Bonus.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratoare_rezolvate_tema/Lab003/Bonus.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab03/Raspuns.png" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratoare_rezolvate_tema/Lab003/Raspuns.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab03/Tema.py" beforeDir="false" afterPath="$PROJECT_DIR$/Laboratoare_rezolvate_tema/Lab003/Tema.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,20 +76,37 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Cursuri - Teorie/Curs 1 - Introducere in programarea probabilistica" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Cursuri - Teorie/Curs 2 - Modele grafice. Rețele Bayesiene" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Cursuri - Teorie/Curs 3 - Inferenta Bayesiana" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Cursuri - Teorie/Curs 4 - Programare probabilista folosind PyMC" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Cursuri - Teorie/Curs 5 - Programare probabilistă folosind PyMC - continuare.txt" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Cursuri - Teorie/Curs 6 - Regresie Liniara.txt" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Teorie generala" root0="SKIP_HIGHLIGHTING" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="groupByToolId" value="true" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 4
 }</component>
   <component name="ProjectId" id="2WrTeg6ZG2znZs5zVQCGCoeqBtO" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
@@ -43,9 +116,20 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.build&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\anama\OneDrive\Desktop\PMP\Laboratoare - Modele\Lab07" />
+      <recent name="C:\Users\anama\OneDrive\Desktop\PMP\Laboratoare_rezolvate_tema" />
+      <recent name="C:\Users\anama\OneDrive\Desktop\PMP\Laboratoare - Modele\Lab06" />
+      <recent name="C:\Users\anama\OneDrive\Desktop\PMP\Laboratoare - Modele\Lab01" />
+      <recent name="C:\Users\anama\OneDrive\Desktop\PMP\Laboratoare - Modele" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -56,13 +140,36 @@
       <updated>1697489798840</updated>
       <workItem from="1697489805189" duration="1116000" />
       <workItem from="1697526267759" duration="471000" />
+      <workItem from="1699971551688" duration="24000" />
+      <workItem from="1700257283626" duration="77000" />
+      <workItem from="1700656210522" duration="604000" />
+      <workItem from="1700736216411" duration="528000" />
+      <workItem from="1700736756327" duration="59000" />
+      <workItem from="1700736822985" duration="12500000" />
+      <workItem from="1700749607940" duration="4335000" />
+      <workItem from="1700754294303" duration="7427000" />
+      <workItem from="1700766523942" duration="7139000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/PMP$solutie_ex3.coverage" NAME="solutie_ex3 Coverage Results" MODIFIED="1700747194052" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Laboratoare - Modele/Lab02" />
+    <SUITE FILE_PATH="coverage/PMP$example.coverage" NAME="example Coverage Results" MODIFIED="1700745135161" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Laboratoare - Modele/Lab02" />
+    <SUITE FILE_PATH="coverage/PMP$Curs5_Inferenta_Robusta_model.coverage" NAME="Curs5-Inferenta_Robusta-model Coverage Results" MODIFIED="1700762016974" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Cursuri - Teorie" />
+    <SUITE FILE_PATH="coverage/PMP$solutie_ex2.coverage" NAME="solutie_ex2 Coverage Results" MODIFIED="1700746526847" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Laboratoare - Modele/Lab02" />
+    <SUITE FILE_PATH="coverage/PMP$Lab01___Simi.coverage" NAME="Lab01 - Simi Coverage Results" MODIFIED="1700743373433" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Curs 1 - Introducere in programarea probabilista" />
+    <SUITE FILE_PATH="coverage/PMP$Tema.coverage" NAME="Tema Coverage Results" MODIFIED="1700761840560" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Lab005" />
+    <SUITE FILE_PATH="coverage/PMP$Curs5_Inferenta_Gaussiana_model.coverage" NAME="Curs5-Inferenta_Gaussiana-model Coverage Results" MODIFIED="1700762196351" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Cursuri - Teorie" />
+    <SUITE FILE_PATH="coverage/PMP$others.coverage" NAME="others Coverage Results" MODIFIED="1700257342018" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PMP$__init__.coverage" NAME="__init__ Coverage Results" MODIFIED="1697490356676" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Lab03" />
+    <SUITE FILE_PATH="coverage/PMP$exemplu.coverage" NAME="exemplu Coverage Results" MODIFIED="1700770513489" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Laboratoare - Modele/Lab07" />
+    <SUITE FILE_PATH="coverage/PMP$solutie_ex1.coverage" NAME="solutie_ex1 Coverage Results" MODIFIED="1700746412974" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Laboratoare - Modele/Lab02" />
+    <SUITE FILE_PATH="coverage/PMP$solutie.coverage" NAME="solutie Coverage Results" MODIFIED="1700772953468" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Laboratoare - Modele/Lab07" />
   </component>
 </project>

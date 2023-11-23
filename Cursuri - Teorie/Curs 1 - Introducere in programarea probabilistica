@@ -1,0 +1,27 @@
+1. Introducere in programarea probabilistă
+     ▶ Despre modelare probabilistă
+     ▶ Elemente de teoria probabilitatilor
+     ▶ Programare probabilistă
+
+Un model probabilist descrie informatii pe care le-am putea observa dintr-un sistem.
+Probabilitatea inversa (adica regula lui Bayes) ne permite:
+    ▶ sa deducem informatii necunoscute
+    ▶ sa adaptam modelele noastre
+    ▶ sa facem predictii si
+    ▶ sa invatam din date.
+
+Regula lui Bayes:
+    P(ipoteze|date) = P(date|ipoteze) * P(ipoteze) / P(date)
+
+    P(ipoteze|date) = probabilitatea ca ipoteza sa fie adevarata, avand in vedere datele
+    P(date|ipoteze) = probabilitatea ca datele sa fie adevarate, avand in vedere ipoteza
+    P(ipoteze) = probabilitatea ca ipoteza sa fie adevarata
+    P(date) = probabilitatea ca datele sa fie adevarate
+
+Variabilele aleatoare sunt variabile care pot lua valori diferite in functie de rezultatul unui experiment.
+    ▶ Variabilele aleatoare discrete pot lua valori dintr-un set finit sau numarabil de valori.
+    ▶ Variabilele aleatoare continue pot lua valori dintr-un set infinit de valori.
+
+Distributia de probabilitate este o functie care atribuie fiecarei valori posibile a unei variabile aleatoare o probabilitate.
+    ▶ Distributia de probabilitate a unei variabile aleatoare discrete este o lista de probabilitati pentru fiecare valoare posibila a variabilei aleatoare.
+    ▶ Distributia de probabilitate a unei variabile aleatoare continue este o functie care atribuie probabilitati fiecarei valori posibile a variabilei aleatoare.

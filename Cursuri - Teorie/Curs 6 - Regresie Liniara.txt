@@ -1,0 +1,18 @@
+▶ Regresie Liniară Simplă:
+    ▶ Relație liniară între variabila dependentă și o singură variabilă independentă
+    ▶ Ecuția liniară generală: y=mx+b
+
+▶ Regresie Polinomială:
+    ▶ Extinde regresia liniară, permisând potrivirea cu polinoame de grad superior.
+    ▶ Necesită atenție pentru a evita overfitting.
+    ▶ Ecuția generală: y=m1x1+m2x2^2+...+b
+
+▶ Regresie Liniară Multiplă:
+    ▶ Analizează relația dintre variabila dependentă și două sau mai multe variabile independente (ecuația generală: y=m1x1+m2x2+...+b).
+    ▶ Utilizează metoda celor mai mici pătrate pentru a găsi coeficienții de regresie.
+    ▶ Formula generală: y = b_0 + b_1*x_1 + b_2*x_2 + ... + b_n*x_n
+
+▶ Programarea Probabilistică:
+    ▶ Încorporează incertitudinea în modelele de regresie.
+    ▶ Utilizează distribuții de probabilitate pentru a reprezenta incertitudinea.
+    ▶ Eșantionare Bayesiană pentru a estima distribuția posterioară și a face predicții probabilistice.

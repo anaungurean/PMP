@@ -1,0 +1,13 @@
+▶ Probabilistică programare (probabilistic programming) este o paradigmă de programare care permite modelarea
+    și rezolvarea problemelor complexe folosind distribuții de probabilitate și inferențe statistice.
+▶ PyMC (Probabilistic Programming in Python using Markov Chain Monte Carlo) este o bibliotecă în Python care
+facilitează programarea probabilistică.
+
+▶ Sintaxa în PyMC poate varia în funcție de tipul de model pe care îl construiești, dar iată un exemplu simplu pentru a ilustra:
+
+În acest exemplu simplu:
+    ▶ Se generează date de exemplu dintr-o distribuție normală.
+    ▶ Se definește un model folosind PyMC3.
+    ▶ Se definesc variabile aleatoare pentru parametrii necunoscuți (cum ar fi media distribuției normale).
+    ▶ Se efectuează inferența folosind MCMC (Metoda Lantului Markov Monte Carlo) pentru a estima distribuția posterioară a parametrilor modelului.
+    ▶ Sintaxa reală va depinde de natura specifică a problemei pe care o modelezi și a distribuțiilor de probabilitate pe care le folosești.

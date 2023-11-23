@@ -1,0 +1,34 @@
+Rețelele Bayesiene sunt o metodă de modelare a dependențelor între variabilele aleatoare prin utilizarea unui graf aciclic direcționat.
+Acestea reprezintă o formă de reprezentare grafică și matematică a relațiilor de dependență probabilistică dintre variabilele dintr-un sistem.
+
+
+1. Modelarea Grafului:
+    ▶ Rețelele Bayesiene utilizează un graf aciclic direcționat (DAG) pentru a reprezenta variabilele și dependențele dintre ele.
+    ▶ Nodurile grafului reprezintă variabilele, iar arcele direcționate indică direcția dependenței probabilistice.
+
+
+2. Probabilități Condiționate:
+    ▶ Probabilitățile condiționate sunt asociate cu fiecare nod în funcție de părinții săi din graful rețelei.
+    ▶ Probabilitățile condiționate sunt utilizate pentru a calcula probabilități marginale și condiționate pentru variabilele din sistem.
+
+3. Regula Lanțului (Chain Rule) a Probabilităților:
+     ▶ Rețelele Bayesiene se bazează pe regula lanțului a probabilităților pentru a exprima distribuția conjunctă a tuturor variabilelor în sistem
+     ca un produs de probabilități condiționate locale.
+
+4. Inferență și Propagare a Informației:
+     ▶ Rețelele Bayesiene permit efectuarea inferențelor prin propagarea informației în graf.
+     ▶ Se pot calcula probabilități marginale, probabilități condiționate și alte mărimi de interes pentru a înțelege comportamentul sistemului.
+
+5. Aplicații Practice:
+    ▶ Rețelele Bayesiene sunt utilizate într-o varietate de domenii, inclusiv inteligența artificială, medicină, finanțe, inginerie și altele.
+    ▶ Ele oferă un cadru eficient pentru modelarea și înțelegerea relațiilor complexe între variabile în condiții de incertitudine.
+
+6. Învățare și Actualizare:
+    ▶ O altă caracteristică importantă este capacitatea de învățare a rețelelor Bayesiene.
+    ▶ Acestea pot fi actualizate sau îmbunătățite pe baza noilor date observate, permițând adaptarea continuă a modelului la schimbările în sistem.
+
+7. Gestionarea Incertitudinii:
+    ▶ O trăsătură distinctivă a rețelelor Bayesiene este abilitatea de a gestiona și cuantifica incertitudinea în modele.
+    Distribuțiile de probabilitate asociate cu nodurile oferă o modalitate transparentă de a exprima gradul de incertitudine asociat cu fiecare estimare.
+    ▶ Rețelele Bayesiene sunt o unealtă puternică pentru modelarea și analiza relațiilor probabilistice între variabile,
+    oferind avantaje semnificative în gestionarea incertitudinii și luarea deciziilor sub incertitudine.

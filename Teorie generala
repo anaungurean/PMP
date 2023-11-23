@@ -1,0 +1,432 @@
+-------- Pachete ---------
+import arviz as az
+    ▶ pentru a vizualiza și interpreta rezultatele unui model bayesian construit cu PyMC
+      az.plot_posterior, az.summary, az.plot_trace
+import matplotlib.pyplot as plt
+    ▶ pentru a vizualiza datele sintetice generate
+import numpy as np
+    ▶ pentru a genera date sintetice
+import pymc3 as pm / import pymc as pm
+    ▶ pentru a construi și ajusta modele bayesiene
+import scipy.stats as stats
+    ▶ pentru a genera date sintetice
+from pgmpy.models import BayesianNetwork
+    ▶ pentru a construi rețele bayesiene
+from pgmpy.factors.discrete import TabularCPD
+    ▶ pentru a construi distribuții condiționate
+from pgmpy.inference import VariableElimination
+    ▶ pentru a calcula probabilități condiționate
+import networkx as nx
+    ▶ pentru crearea, manipularea și vizualizarea rețelelor și a grafurilor
+import pandas as pd
+    ▶ pentru a încărca date dintr-un fișier csv
+
+
+
+
+
+-------- Laborator 1 ---------
+alpha = valoarea adevarata a interceptului
+beta = valoarea adevarata a pantei
+sigma = valoarea adevarata a deviației standard a erorii
+size = numărul de observații
+X1 = variabila independentă (predictor)
+X2 = variabila independentă (predictor)
+    ▶ X1 = np.random.randn(size) -> Se generează size valori aleatoare dintr-o distribuție normală standard (media 0, deviație standard 1)
+Y = variabila dependetă (răspunsul)
+    ▶ reprezintă observațiile simulate ale variabilei dependente în funcție de variabilele predictor X1 și X2
+(X1, X2, Y) sunt folosite pentru a crea un set de date sintetice în care relația dintre X1 și X2 și variabila dependentă Y este modelată printr-un model liniar.
+Acest set de date sintetice este apoi utilizat pentru a exemplifica construirea și ajustarea unui model bayesian în PyMC3.
+mu = valoarea așteptată a variabilei dependente Y
+"likelihood" = probabilitatea de a observa datele observate, dată o anumită configurație a parametrilor modelului
+"deviatie standard" = indică cât de multe sau cât de puține valorile din setul de date se abat de la media acestuia.
+
+În distribuția uniformă, probabilitatea este distribuită uniform într-un interval specificat,
+în timp ce în distribuția normală, probabilitatea este concentrată în jurul mediei, cu o descreștere treptată a probabilității pe măsură ce te îndepărtezi de medie.
+
+
+Vizualizare de date :
+    ▶ Se folosește matplotlib pentru a vizualiza datele sintetice generate
+    ▶ plt.subplot(nrows, ncols, index, **kwargs
+            ▶ nrows -> numărul de rânduri
+            ▶ ncols -> numărul de coloane
+            ▶ index -> numărul subgraficului
+            ▶ **kwargs -> argumente suplimentare
+                ▶ Example : fig, axes = plt.subplots(1, 2, sharex=True, figsize=(10, 4))
+                    ▶  Se creează o figură cu o singură linie și două coloane de subgrafice (axes)
+                    ▶  sharex=True -> toate subgraficele vor avea aceeași scală pe axa x
+                    ▶  figsize=(10, 4) -> dimensiunea figurii este de 10x4 inch
+                    ▶  Variabila fig reprezintă întreaga figură, iar variabila axes este o listă de subgrafice care pot fi referite individual
+    ▶ plt.scatter(x, y, s=None, c=None, marker=None, cmap=None, norm=None, vmin=None, vmax=None, alpha=None, linewidths=None, edgecolors=None, **kwargs)
+            ▶ Pentru a crea un grafic de dispersie (scatter plot) într-o diagramă bidimensional.
+                Un grafic de dispersie este un tip de grafic care prezintă puncte individuale pe un sistem de coordonate,
+                unde fiecare punct reprezintă o pereche de valori pentru două variabile.
+            ▶ x, y -> coordonatele punctelor
+            ▶ s -> dimensiunea punctelor
+            ▶ c -> culoarea punctelor
+            ▶ marker -> forma punctelor
+            ▶ cmap -> culoarea punctelor
+            ▶ norm -> normalizarea valorilor
+            ▶ vmin, vmax -> valori minime și maxime
+            ▶ vmin, vmax -> valori minime și maxime
+            ▶ alpha -> transparența punctelor
+            ▶ linewidths -> grosimea liniilor
+            ▶ edgecolors -> culoarea marginilor
+            ▶ **kwargs -> argumente suplimentare
+            ▶ Example : axes[0].scatter(X1, Y, alpha=0.6)
+       ▶ Axes.set_ylabel(ylabel, fontdict=None, labelpad=None, **kwargs)
+            ▶ Pentru a seta eticheta axei y
+            ▶ ylabel -> eticheta axei y
+            ▶ Example : axes[0].set_ylabel('Y', fontsize=16)
+
+Definirea unui model:
+       ▶ basic_model = pm.Model()
+          Crearea Obiectului Model: Acesta conține toate variabilele aleatoare și relațiile dintre ele pentru modelul nostru.
+       ▶ with basic_model :
+          Oricare variabile sau distribuții definite în cadrul acestui bloc with sunt legate la modelul respectiv.
+Prin specificarea unor distribuții priori, putem încorpora în model cunoștințele noastre sau ipotezele noastre inițiale despre parametri.
+Aceste distribuții sunt apoi actualizate pe baza datelor observate pentru a obține distribuțiile posterioare ale parametrilor
+       ▶ pm.Normal(name, mu, sigma):
+           ▶ Pentru a defini o variabilă aleatoare distribuită normal (sau gaussian) în cadrul unui model probabilistic
+           ▶ Distribuția prior (distribuția a priori) a unui parametru necunoscut.
+           ▶ name -> numele variabilei aleatoare
+           ▶ mu -> media (valoarea așteptată) a distribuției normale.
+           ▶ sigma -> deviația standard a distribuției normale
+           ▶ Example : alpha = pm.Normal('alpha', mu=0, sigma=10)
+       ▶ pm.HalfNormal(name, sigma)
+           ▶ Pentru a defini o variabilă aleatoare distribuită normal (sau gaussian) în cadrul unui model probabilistic, dar limitată la valorile pozitive.
+           ▶ Distribuția prior (distribuția a priori) a unui parametru necunoscut.
+           ▶ name -> numele variabilei aleatoare
+           ▶ sigma -> deviația standard a distribuției normale
+           ▶ Example : sigma = pm.HalfNormal('sigma', sigma=1)
+       ▶ pm.Normal(name, mu, sigma, observed)
+            ▶ observed -> valoarea observată a variabilei aleatoare
+            ▶ Example : Y_obs = pm.Normal('Y_obs', mu=mu, sigma=sigma, observed=Y)
+       ▶ pm.find_MAP(model = model)
+            ▶ pentru a găsi valoarea maximă a probabilității a posteriori (MAP) a distribuției posterioare
+            ▶ model: Obiectul modelului probabilistic pentru care se caută MAP.
+            ▶ Example : map_estimate = pm.find_MAP(model=basic_model)
+                ▶ map_estimate este un dicționar care conține valorile estimate ale parametrilor modelului care maximizează probabilitatea a posteriori
+
+---------- Laborator 2 -----------
+   ▶ np.random.seed(1)
+     ▶ pentru a genera aceleași numere aleatoare
+   ▶ stats.norm.rvs(loc=0, scale=1, size=1, random_state=None)
+        ▶ pentru a genera valori aleatoare dintr-o distribuție normală
+        ▶ loc -> media distribuției normale
+        ▶ scale -> deviația standard a distribuției normale
+        ▶ size -> numărul de valori generate
+        ▶ random_state -> pentru a genera aceleași numere aleatoare
+        ▶ Example : stats.norm.rvs(loc=0, scale=1, size=1, random_state=None)
+   ▶ stats.uniform.rvs(loc=0, scale=1, size=1, random_state=None)
+        ▶ pentru a genera valori aleatoare dintr-o distribuție uniformă
+   ▶ stats.expon.rvs(loc=0, scale=1, size=1, random_state=None)
+        ▶ pentru a genera valori aleatoare dintr-o distribuție exponențială
+   ▶ stats.gamma.rvs(a, loc=0, scale=1, size=1, random_state=None)
+           ▶ pentru a genera valori aleatoare dintr-o distribuție gamma
+                ▶ a -> parametrul de formă al distribuției gamma
+   ▶ stats.binom.rvs(n, p, loc=0, size=1, random_state=None)
+           ▶ pentru a genera valori aleatoare dintr-o distribuție binomială
+                ▶ n -> numărul de încercări
+                ▶ p -> probabilitatea de succes
+   ▶ stats.multinomial.rvs(n, p, size=1, random_state=None)
+           ▶ pentru a genera valori aleatoare dintr-o distribuție multinomială
+                ▶ n -> numărul de încercări
+                ▶ p -> probabilitatea de succes
+    ▶ stats.poisson.rvs(mu, loc=0, size=1, random_state=None)
+             ▶ pentru a genera valori aleatoare dintr-o distribuție Poisson
+                 ▶ mu -> parametrul de medie al distribuției Poisson
+
+   ▶ az.plot_posterior(data, var_names=None, kind='kde', point_estimate='mean', hdi_prob=None, round_to=2, rope=None, ref_val=None, color='C0', kde_kwargs=None, point_estimate_kwargs=None, rope_kwargs=None, ref_val_kwargs=None, backend=None, ax=None, figsize=None, **kwargs)
+        ▶ pentru a vizualiza distribuția posterioară a parametrilor modelului
+        ▶ data -> dicționar sau obiect InferenceData care conține datele posterioare.
+        ▶ var_names -> numele variabilelor pentru care se dorește vizualizarea distribuției posterioare
+        ▶ kind -> tipul de grafic
+        ▶ point_estimate -> tipul de estimare a punctului
+        ▶ hdi_prob -> probabilitatea intervalului de credință
+        ▶ Example : az.plot_posterior(trace, var_names=['alpha', 'beta', 'sigma'], round_to=2)
+
+
+
+
+-------- Laborator 3 ----------
+
+     ▶ model = BayesianNetwork(edge_list)
+         ▶ Crearea unei instanțe de BayesianNetwork
+         ▶ edge_list -> O listă de tupluri care descriu arcele dintre variabilele din rețea.
+     ▶ cpd = TabularCPD(variable, variable_card, values, evidence=None, evidence_card=None)
+        ▶ Crearea unui model CPD (Conditional Probability Distribution)
+        ▶ variable -> Numele variabilei pentru care se definește CPD.
+        ▶ variable_card -> Numărul de valori pe care le poate lua variabila
+        ▶ values -> Tabelul cu valorile de probabilitate.
+        ▶ evidence -> Listă cu numele variabilelor evidență (părinți ai variabilei).
+        ▶ evidence_card -> Listă cu numărul de valori posibile ale variabilelor evidență.
+     ▶ model.add_cpds(cpd1, cpd2, ...)
+        ▶ Adăugarea modelelor CPD (Conditional Probability Distribution)
+        ▶ cpd1, cpd2, ... -> Modelele CPD care descriu distribuțiile de probabilitate condiționate pentru variabilele din rețea.
+     ▶  assert model.check_model()
+        ▶ Verificarea corectitudinii modelului, adică dacă relațiile și modelele CPD sunt consistente.
+     ▶  infer = VariableElimination(model)
+        ▶ Crearea unui obiect VariableElimination cu modelul specificat
+     ▶  result = infer.query(variables=['variabila_interes'], evidence={'variabila_cunoscuta': valoare_cunoscuta}, joint=False, show_progress=True)
+        ▶  Obținerea probabilității condiționate pentru variabila de interes, dată valoarea cunoscută a variabilei cunoscute.
+          ▶  variables -> Variabilele pentru care se dorește probabilitatea condiționată.
+          ▶  evidence -> Dicționar cu variabilele cunoscute și valorile lor.
+          ▶  joint -> Dacă este True, se returnează distribuția conjunctă a variabilelor de interes.
+          ▶  show_progress -> Dacă este True, se afișează progresul inferenței.
+          Example : prob_cutremur_stiind_alarma = infer.query(variables=['cutremur'], evidence={'alarma': 1})
+     ▶  pos = nx.circular_layout(G, scale=1, center=None, dim=2)
+        ▶  Crearea unei poziții pentru nodurile grafului
+        ▶  G -> Graful pentru care se dorește crearea poziției nodurilor.
+        ▶  scale -> Factorul de scalare pentru poziția nodurilor.
+        ▶  center -> Coordonatele centrului cercului în jurul căruia se vor plasa nodurile.
+        ▶  dim -> Dimensiunea grafului.
+     ▶  nx.draw(G, pos=None, arrows=True, with_labels=True, **kwargs)
+        ▶  Desenarea grafului
+        ▶  G -> Graful care se dorește desenat.
+        ▶  pos -> Poziția nodurilor.
+        ▶  arrows -> Dacă este True, se desenează arcele grafului.
+        ▶  with_labels -> Dacă este True, se desenează etichetele nodurilor.
+        ▶  **kwargs -> Argumente suplimentare.
+
+-------- Laborator 4 ----------
+    ▶ stats.norm.rvs
+    ▶ stats.poison.rvs
+
+------- Laborator 5 ---------
+    ▶ numpy.loadtxt(fname, dtype=<class 'float'>, comments='#', delimiter=None, converters=None, skiprows=0, usecols=None, unpack=False, ndmin=0, encoding='bytes', max_rows=None)
+        ▶ pentru a încărca date dintr-un fișier text
+        ▶ fname -> numele fișierului
+        ▶ dtype -> tipul de date al tabloului întors. Implicit, este float
+        ▶ delimiter -> Delimitatorul folosit pentru separarea valorilor în fișierul text. Implicit, este spațiul.
+        ▶ skiprows -> numărul de linii care trebuie ignorate de la începutul fișierului
+        ▶ Example :  count_data = np.loadtxt("trafic.csv", delimiter=',', dtype=int)
+    ▶ pm.Exponential(name, lam, **kwargs)
+        ▶ pentru a defini o distribuție exponențială în cadrul unui model Bayesian
+        ▶ name: Numele variabilei aleatoare în modelul Bayesian.
+        ▶ lam: Parametrul λ (lambda) al distribuției exponențiale, care reprezintă rata evenimentelor.
+        ▶ Example : lambda_1 = pm.Exponential("lambda_1", alpha)
+    ▶ pm.Normal(name, mu, sigma, **kwargs)
+        ▶ pentru a defini o distribuție normală în cadrul unui model Bayesian
+        ▶ name: Numele variabilei aleatoare în modelul Bayesian.
+        ▶ mu: Media distribuției normale.
+        ▶ sigma: Deviația standard a distribuției normale.
+        ▶ Example : interval1 = pm.Normal("interval1", 60 * 3)
+    ▶ pm.DiscreteUniform(name, lower, upper, **kwargs)
+        ▶ pentru a defini o variabilă aleatoare discretă care urmează o distribuție uniformă discretă în cadrul unui model Bayesian
+        ▶ name: Numele variabilei aleatoare în modelul Bayesian.
+        ▶ lower: Valoarea minimă a variabilei aleatoare.
+        ▶ upper: Valoarea maximă a variabilei aleatoare.
+        ▶ Example : tau1 = pm.DiscreteUniform("tau1", lower=1, upper=interval1)
+    ▶ pm.Poisson(name, mu, **kwargs)
+        ▶ pentru a defini o distribuție Poisson în cadrul unui model Bayesian
+        ▶ name: Numele variabilei aleatoare în cadrul modelului Bayesian.
+        ▶ mu: Parametrul μ (mu) al distribuției Poisson, care reprezintă media și varianța distribuției.
+        ▶ Example : observation = pm.Poisson("obs", lmbd4, observed=count_data[:, 1])
+    ▶ numpy.arange([start, ]stop, [step, ], dtype=None)
+        ▶ pentru a genera un tablou de valori
+        ▶ start: Valoarea de start a tabloului. Implicit, este 0.
+        ▶ stop: Valoarea de stop a tabloului.
+        ▶ step: Diferența dintre două valori consecutive din tablou. Implicit, este 1.
+        ▶ dtype: Tipul de date al tabloului. Implicit, este None.
+        ▶ Example :  idx = np.arange(n_count_data)
+    ▶ pm.math.switch(condition, if_true, if_false)
+        ▶ pentru a defini o variabilă aleatoare care ia o valoare dacă o condiție este adevărată și o altă valoare dacă condiția este falsă
+        ▶ condition: condiția care trebuie verificată
+        ▶ if_true: valoarea care se va lua dacă condiția este adevărată
+        ▶ if_false: valoarea care se va lua dacă condiția este falsă
+        ▶ Example :  lambda_ = pm.math.switch(tau > idx, lambda_1, lambda_2)
+    ▶ pm.sample(draws=500, tune=500, chains=1, random_seed=None, **kwargs)
+        ▶ pentru a efectua eșantionarea din distribuția posterioară a unui model Bayesian
+        ▶ eșantionarea este o tehnică esențială în inferența Bayesiană și este folosită pentru a estima distribuția de probabilitate a parametrilor modelului după observarea datelor
+        ▶ draws: Numărul de eșantioane de la distribuția posterioară. Acestea sunt eșantioanele utilizate pentru a estima distribuția de probabilitate a parametrilor.
+        ▶ tune: Numărul de eșantioane utilizate pentru adaptarea (burn-in). Aceste eșantioane nu sunt incluse în rezultatele finale, dar sunt folosite pentru a ajusta algoritmul de eșantionare.
+        ▶ chains: Numărul de lanțuri Markov utilizate pentru eșantionare. Fiecare lanț Markov este o serie de eșantioane care ajută la explorarea spațiului parametrelor.
+        ▶ random_seed: Seed-ul pentru generatorul de numere aleatoare, utilizat pentru a face rezultatele reproductibi
+        ▶ Example :      trace = pm.sample(10,tune = 10, cores=1)
+    ▶ az.plot_posterior()
+
+------- Laborator 6 ---------
+    ▶ pm.Binomial(name, n, p, **kwargs)
+        ▶ pentru a defini o variabilă aleatoare care urmează o distribuție binomială în cadrul unui model Bayesian
+        ▶ Distribuția binomială modelează numărul de succese într-un număr fix de încercări Bernoulli independente și identice. De exemplu, numărul de capete în 10 aruncări de monedă.
+        ▶ name: Numele variabilei aleatoare în modelul Bayesian.
+        ▶ n: Numărul de încercări.
+        ▶ p: Probabilitatea de succes în fiecare încercare Bernoulli, între 0 și 1.
+        ▶ observed : Valoarea observată a variabilei aleatoare.
+        ▶ Example :  p = pm.Binomial("p", n=n_count_data, p=0.05)
+    ▶ plt.tight_layout()
+        ▶ pentru a ajusta automat subgraficele în interiorul unei figuri
+
+
+------- Laborator 7 ---------
+        ▶ data = pd.read_csv('nume_fisier.csv', sep=',', header='infer', names=None, index_col=None, usecols=None, dtype=None)
+            ▶ pentru a încărca date dintr-un fișier csv
+            ▶ data -> DataFrame-ul care conține datele din fișierul csv
+            ▶ nume_fisier.csv -> numele fișierului csv
+            ▶ sep -> separatorul folosit pentru separarea valorilor în fișierul csv. Implicit, este virgula.
+            ▶ header -> numărul liniei care conține numele coloanelor. Implicit, este 0.
+            ▶ names -> lista cu numele coloanelor. Implicit, este None.
+            ▶ index_col -> numărul coloanei care conține indexul. Implicit, este None.
+            ▶ usecols -> lista cu numele coloanelor care se doresc încărcate. Implicit, sunt toate coloanele.
+            ▶ dtype -> dicționar cu numele coloanelor și tipurile de date ale acestora. Implicit, sunt toate float.
+            ▶ Example : df = pd.read_csv('data.csv', sep=',', header='infer', names=None, index_col=None, usecols=None, dtype=None)
+        ▶ data.head()
+            ▶ pentru a afișa primele 5 linii din DataFrame
+        ▶ data.tail()
+            ▶ pentru a afișa ultimele 5 linii din DataFrame
+        ▶ df['nume_coloana'] = pd.to_numeric(df['nume_coloana'], errors='coerce')
+            ▶ pentru a converti valorile unei coloane dintr-un DataFrame în valori numerice
+            ▶ df['nume_coloana'] -> coloana care se dorește convertită
+            ▶ errors -> Specifică cum să trateze eventualele erori. Argumentul 'coerce' înseamnă că valorile care nu pot fi convertite vor fi transformate în NaN (Not a Number)
+                ▶ 'coerce' -> valorile care nu pot fi convertite sunt transformate în NaN
+            ▶ Example : df['nume_coloana'] = pd.to_numeric(df['nume_coloana'], errors='coerce')
+        ▶ df.dropna(axis=0, how='any', thresh=None, subset=None, inplace=False)
+            ▶ pentru a elimina liniile care conțin valori NaN
+            ▶ axis -> specifică dacă se dorește eliminarea liniilor (axis=0) sau a coloanelor (axis=1)
+            ▶ how -> specifică dacă se dorește eliminarea liniilor sau coloanelor care conțin cel puțin o valoare NaN (how='any') sau dacă se dorește eliminarea liniilor sau coloanelor care conțin toate valori NaN (how='all')
+            ▶ thresh -> specifică numărul minim de valori non-NaN care trebuie să fie prezente pentru a nu fi eliminate liniile sau coloanele
+            ▶ subset -> specifică lista de coloane care trebuie luate în considerare pentru eliminarea liniilor sau coloanelor
+            ▶ inplace -> specifică dacă modificările trebuie făcute în DataFrame-ul original (inplace=True) sau dacă trebuie returnat un DataFrame nou (inplace=False)
+            ▶ Example : df.dropna(axis=0, how='any', thresh=None, subset=None, inplace=False)
+        ▶ plt.figure(num=None, figsize=None, dpi=None, facecolor=None, edgecolor=None, frameon=True, FigureClass=<class 'matplotlib.figure.Figure'>, clear=False, **kwargs)
+            ▶ pentru a crea o figură
+            ▶ num -> numărul figurii
+            ▶ figsize -> dimensiunea figurii
+            ▶ dpi -> rezoluția figurii
+            ▶ facecolor -> culoarea figurii
+            ▶ edgecolor -> culoarea marginii figurii
+            ▶ frameon -> dacă este True, se desenează marginea figurii
+            ▶ FigureClass -> clasa folosită pentru a crea figura
+            ▶ clear -> dacă este True, se șterge figura
+            ▶ **kwargs -> argumente suplimentare
+            ▶ Example : plt.figure(figsize=(10, 4))
+        ▶ plt.scatter(x, y, s=None, c=None, marker=None, cmap=None, norm=None, vmin=None, vmax=None, alpha=None, linewidths=None, edgecolors=None, **kwargs)
+            ▶ pentru a crea un grafic de dispersie (scatter plot) într-o diagramă bidimensional.
+            ▶ x, y -> coordonatele punctelor
+            ▶ s -> dimensiunea punctelor
+            ▶ c -> culoarea punctelor
+            ▶ marker -> forma punctelor
+            ▶ cmap -> culoarea punctelor
+            ▶ norm -> normalizarea valorilor
+            ▶ vmin, vmax -> valori minime și maxime
+            ▶ vmin, vmax -> valori minime și maxime
+            ▶ alpha -> transparența punctelor
+            ▶ linewidths -> grosimea liniilor
+            ▶ edgecolors -> culoarea marginilor
+            ▶ **kwargs -> argumente suplimentare
+            ▶ Example : plt.scatter(df['x'], df['y'], alpha=0.6)
+        ▶ plt.title(label, fontdict=None, loc='center', pad=None, **kwargs)
+            ▶ pentru a seta titlul figurii
+            ▶ label -> titlul figurii
+            ▶ fontdict -> dicționar cu proprietățile fontului
+            ▶ loc -> locația titlului
+            ▶ pad -> spațiul dintre titlu și marginea figurii
+            ▶ **kwargs -> argumente suplimentare
+            ▶ Example : plt.title('Titlu', fontsize=16)
+        ▶ plt.xlabel(xlabel, fontdict=None, labelpad=None, **kwargs)
+            ▶ pentru a seta eticheta axei x
+            ▶ xlabel -> eticheta axei x
+            ▶ fontdict -> dicționar cu proprietățile fontului
+            ▶ labelpad -> spațiul dintre etichetă și axă
+            ▶ **kwargs -> argumente suplimentare
+            ▶ Example : plt.xlabel('X', fontsize=16)
+        ▶ plt.ylabel(ylabel, fontdict=None, labelpad=None, **kwargs)
+            ▶ pentru a seta eticheta axei y
+            ▶ ylabel -> eticheta axei y
+            ▶ fontdict -> dicționar cu proprietățile fontului
+            ▶ labelpad -> spațiul dintre etichetă și axă
+            ▶ **kwargs -> argumente suplimentare
+            ▶ Example : plt.ylabel('Y', fontsize=16)
+        ▶ plt.legend(*args, **kwargs)
+            ▶ pentru a afișa legenda figurii
+            ▶ *args -> argumente poziționale
+            ▶ **kwargs -> argumente cheie-valoare
+            ▶ Example : plt.legend(['label1', 'label2'], loc='upper left')
+        ▶ plt.grid(b=True, which='major', axis='both', linestyle='-', linewidth=0.5, color='gray', alpha=0.5)
+            ▶ pentru a afișa grila figurii
+            ▶ b -> dacă este True, se afișează grila
+            ▶ which -> specifică grila care se dorește afișată
+            ▶ axis -> specifică axa pentru care se dorește afișată grila
+            ▶ linestyle -> stilul liniilor grilei
+            ▶ linewidth -> grosimea liniilor grilei
+            ▶ color -> culoarea liniilor grilei
+            ▶ alpha -> transparența liniilor grilei
+            ▶ Example : plt.grid(b=True, which='major', axis='both', linestyle='-', linewidth=0.5, color='gray', alpha=0.5)
+        ▶ pm.HalfCauchy('nume_variabila', beta=parametru_beta)
+            ▶ pentru a defini o variabilă aleatoare care urmează o distribuție Half-Cauchy în cadrul unui model Bayesian
+            ▶ name: Numele variabilei aleatoare în modelul Bayesian.
+            ▶ beta: Parametrul β (beta) al distribuției Half-Cauchy.
+            ▶ Example : sigma = pm.HalfCauchy('sigma', beta=10, testval=1.)
+        ▶ pm.Deterministic('nume_variabila', formula)
+            ▶ pentru a defini o variabilă aleatoare deterministă în cadrul unui model Bayesian
+            ▶ name: Numele variabilei aleatoare în modelul Bayesian.
+            ▶ formula: Formula care definește variabila aleatoare deterministă.
+            ▶ Example :  niu = pm.Deterministic('niu', horsepower * beta + alfa)
+        ▶ az.plot_trace(trace, var_names=None, compact=False, figsize=None, combined=False, rug=False, lines=None, plot_kwargs=None, fill_kwargs=None)
+            ▶ pentru a crea un traseu de urmărire (trace plot) pentru variabilele de interes în cadrul unui model Bayesian
+            ▶ trace -> dicționar sau obiect InferenceData care conține datele posterioare.
+            ▶ var_names -> numele variabilelor pentru care se dorește vizualizarea traseului de urmărire
+            ▶ compact -> dacă este True, se afișează toate traseele de urmărire într-o singură figură
+            ▶ figsize -> dimensiunea figurii
+            ▶ combined -> dacă este True, se afișează toate traseele de urmărire într-un singur grafic
+            ▶ rug -> dacă este True, se afișează rug plot
+            ▶ lines -> dicționar cu numele variabilelor și valorile acestora
+            ▶ plot_kwargs -> dicționar cu argumente pentru plot
+            ▶ fill_kwargs -> dicționar cu argumente pentru fill_between
+            ▶ Example : az.plot_trace(trace, var_names=['alfa', 'beta', 'sigma'])
+        ▶ plt.plot(x, y, format, label)
+            ▶ pentru a crea un grafic de linie într-o diagramă bidimensională
+            ▶ x, y -> coordonatele punctelor
+            ▶ format -> Un șir de caractere care specifică stilul de linie și/sau marcatori pentru punctele de pe grafic.
+            ▶ label ->  Un text care furnizează o etichetă pentru linie, care poate fi folosită în legende.
+            ▶ Example : plt.plot(x, y, 'r-', label='linie'
+       ▶ pm.sample_posterior_predictive(trace, samples=None, model=None, vars=None, size=None, random_seed=None, progressbar=True)
+            ▶ a genera previziuni ale datelor observate în baza distribuțiilor posterioare ale parametrilor obținute în urma inferenței Bayesiane
+            ▶ trace -> dicționar sau obiect InferenceData care conține datele posterioare.
+            ▶ samples -> numărul de eșantioane care se doresc generate
+            ▶ model -> modelul Bayesian pentru care se dorește generarea datelor sintetice
+            ▶ vars -> numele variabilelor pentru care se dorește generarea datelor sintetice
+            ▶ size -> dimensiunea datelor sintetice
+            ▶ random_seed -> pentru a genera aceleași numere aleatoare
+            ▶ progressbar -> dacă este True, se afișează progresul generării datelor sintetice
+            ▶ Example : pp_trace = pm.sample_posterior_predictive(trace, samples=500, model=model, vars=[alfa, beta, sigma, niu], size=1000)
+       ▶ az.plot_hdi(data, hdi_prob=0.94, color='blue', ax=None, figsize=None, fill_kwargs=None, plot_kwargs=None)
+            ▶ ste utilizată pentru a desena intervalul de încredere al distribuției marginale a unui set de date.
+            ▶ HDI : reprezintă intervalul care conține cea mai mare densitate a probabilității din distribuție.
+            ▶ data -> dicționar sau obiect InferenceData care conține datele observate.
+            ▶ hdi_prob -> probabilitatea intervalului de credință
+            ▶ color -> culoarea intervalului de credință
+            ▶ ax -> axa pe care se dorește afișat intervalul de credință
+            ▶ figsize -> dimensiunea figurii
+            ▶ fill_kwargs -> dicționar cu argumente pentru fill_between
+            ▶ plot_kwargs -> dicționar cu argumente pentru plot
+            ▶ Example : az.plot_hdi(data, hdi_prob=0.94, color='blue', ax=None, figsize=None, fill_kwargs=None, plot_kwargs=None)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,24 @@
+▶ Inferență Gaussiană:
+    ▶ Definiție: Inferența Gaussiană se referă la procesul de a face concluzii sau predicții despre o distribuție Gaussiană (normală).
+    ▶ PyMC și Inferența Gaussiană: Cu PyMC, puteți modela și efectua inferență pe date distribuite normal
+     folosind distribuții normale pentru variabilele observate și necunoscute.
+
+▶ Inferență robustă:
+
+    ▶ Definiție: Inferența robustă implică dezvoltarea de metode de inferență statistice care sunt rezistente la date aberante
+    sau distribuții departe de distribuțiile normale.
+    ▶ PyMC și Inferența Robustă: PyMC oferă posibilități de a modela și a efectua inferență pe date cu distribuții robuste,
+    cum ar fi distribuții t-student sau alte distribuții robuste la outliere.
+
+▶ Comparația grupurilor:
+
+    ▶ Definiție: Comparația grupurilor implică evaluarea diferențelor sau similarităților între două sau mai multe grupuri de date.
+    ▶ PyMC și Comparația Grupurilor: PyMC permite utilizatorilor să modeleze și să efectueze teste de comparație a grupurilor,
+    inclusiv teste bayesiene care oferă o perspectivă probabilistică asupra diferențelor dintre grupuri.
+
+▶ Modele ierarhice:
+
+    ▶ Definiție: Modelele ierarhice sunt modele statistice care încorporează nestingul de date, adică structura ierarhică a datelor.
+    ▶ PyMC și Modelele Ierarhice: PyMC facilitează construirea și inferența modelelor ierarhice,
+    în care variabilele pot depinde de nivelurile superioare ale ierarhiei,
+    permițând astfel modelarea complexității structurii datelor ierarhice.
