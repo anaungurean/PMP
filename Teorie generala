@@ -129,6 +129,8 @@ Aceste distribuții sunt apoi actualizate pe baza datelor observate pentru a ob�
            ▶ pentru a genera valori aleatoare dintr-o distribuție binomială
                 ▶ n -> numărul de încercări
                 ▶ p -> probabilitatea de succes
+                  size -> numărul de valori generate
+
    ▶ stats.multinomial.rvs(n, p, size=1, random_state=None)
            ▶ pentru a genera valori aleatoare dintr-o distribuție multinomială
                 ▶ n -> numărul de încercări
