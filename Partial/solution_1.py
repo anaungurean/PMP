@@ -1,11 +1,10 @@
 import random
 from scipy import stats
-import numpy as np
-from pgmpy.models import BayesianModel
-from pgmpy.estimators import ParameterEstimator
-from pgmpy.inference import VariableElimination
+from pgmpy.models import BayesianNetwork, BayesianModel
 from pgmpy.factors.discrete import TabularCPD
-
+import networkx as nx
+import matplotlib.pyplot as plt
+from pgmpy.inference import VariableElimination
 
 jucator0_castiga = 0  # Variabila pentru numărul de jocuri câștigate de jucatorul 0
 jucator1_castiga = 0  # Variabila pentru numărul de jocuri câștigate de jucatorul 1
@@ -52,56 +51,30 @@ for i in range(10000):  # Se simulează 10000 de jocuri
 print("Player J0 poate castiga cu sansele de ", jucator0_castiga / 10000 * 100, "%")
 print("Player J1 poate castiga cu sansele de", jucator1_castiga / 10000 * 100, "%")
 
-# Creare model Bayesian
-model = BayesianModel([('Moneda', 'Jucator0_castiga'),
-                       ('Moneda', 'Jucator1_castiga'),
-                       ('Moneda', 'Stema_moneda1'),
-                       ('Stema_moneda1', 'N'),
-                       ('Jucator1_castiga', 'Stema_moneda1'),
-                       ('Jucator0_castiga', 'Stema_moneda1'),
-                       ('Stema_moneda1', 'Stema_moneda2'),
-                       ('Stema_moneda2', 'M'),
-                       ('N', 'Jucator0_castiga'),
-                       ('M', 'Jucator1_castiga')])
+#Modelul Bayesian
+model = BayesianNetwork([('PrimPlayer', 'n'), ('n', 'm'), ('PrimPlayer', 'm')])
 
-# Definirea distribuțiilor de probabilitate condiționate (TabularCPD)
-cpd_moneda = TabularCPD(variable='Moneda', variable_card=2, values=[[0.5, 0.5]])
+# Adăugarea modelelor CPD (Conditional Probability Distribution)
+cpd_starting_player = TabularCPD('PrimPlayer', 2, [[0.5], [0.5]])
 
-cpd_stema_moneda1 = TabularCPD(variable='Stema_moneda1', variable_card=2,
-                               values=[[2/3, 1/2], [1/3, 1/2]],
-                               evidence=['Moneda'], evidence_card=[2])
+cpd_n = TabularCPD('n', 2, [[2/3, 0.5], [1/3, 0.5]], evidence=['PrimPlayer'], evidence_card=[2])
 
-cpd_stema_moneda2 = TabularCPD(variable='Stema_moneda2', variable_card=2,
-                               values=[[2/3, 1/2], [1/3, 1/2]],
-                               evidence=['Stema_moneda1'], evidence_card=[2])
+cpd_m = TabularCPD('m', 2, [[2/3, 1/3, 0.5, 0.5], [1/3, 2/3, 0.5, 0.5]], evidence=['n', 'PrimPlayer'], evidence_card=[2, 2])
 
-cpd_n = TabularCPD(variable='N', variable_card=2,
-                   values=[[0, 1], [1, 0]],
-                   evidence=['Stema_moneda1'], evidence_card=[2])
+# Adăugarea modelelor CPD la modelul Bayesian
+model.add_cpds(cpd_starting_player, cpd_n, cpd_m)
 
-cpd_m = TabularCPD(variable='M', variable_card=2,
-                   values=[[0, 1, 2], [1, 0, 0]],
-                   evidence=['Stema_moneda2'], evidence_card=[2])
+# Verificarea modelului
+model.check_model()
 
-cpd_jucator0_castiga = TabularCPD(variable='Jucator0_castiga', variable_card=2,
-                                  values=[[0, 1], [1, 0]],
-                                  evidence=['N'], evidence_card=[2])
+# Desenarea modelului
+pos = nx.circular_layout(model)
+nx.draw(model, pos=pos, with_labels=True, node_size=4000, node_color='skyblue')
+plt.show()
 
-cpd_jucator1_castiga = TabularCPD(variable='Jucator1_castiga', variable_card=2,
-                                  values=[[1, 0], [0, 1]],
-                                  evidence=['M'], evidence_card=[2])
+# Inferența
+infer = VariableElimination(model) #Crearea unui obiect VariableElimination cu modelul specificat
 
-# Adăugarea distribuțiilor la model
-model.add_cpds(cpd_moneda, cpd_stema_moneda1, cpd_stema_moneda2, cpd_n, cpd_m, cpd_jucator0_castiga, cpd_jucator1_castiga)
+prob_jucator0_stiind_m = infer.query(variables=['PrimPlayer'], evidence={'m': 1}) #Se calculează probabilitatea ca jucatorul 0 să înceapă jocul
+print(prob_jucator0_stiind_m)
 
-# Verificarea consistenței modelului
-print("Modelul este consistent:", model.check_model())
-
-# Inferență pe baza datelor
-inference = VariableElimination(model)
-probabilitate_castig_jucator0 = inference.query(variables=['Jucator0_castiga'], evidence={'Moneda': 0.5})['Jucator0_castiga']
-probabilitate_castig_jucator1 = inference.query(variables=['Jucator1_castiga'], evidence={'Moneda': 0.5})['Jucator1_castiga']
-
-# Se afișează probabilitatea de câștig pentru fiecare jucător
-print("Probabilitatea ca Jucatorul 0 să câștige:", probabilitate_castig_jucator0.values[1])
-print("Probabilitatea ca Jucatorul 1 să câștige:", probabilitate_castig_jucator1.values[1])

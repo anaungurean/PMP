@@ -1,41 +1,22 @@
-import matplotlib.pyplot as plt
+# ex2
+model = BayesianModel([('StartingPlayer', 'n'), ('n', 'm')])
 
-import pymc as pm
-import arviz as az
+cpd_starting_player = TabularCPD('StartingPlayer', 2, [[0.5], [0.5]])
 
+cpd_n = TabularCPD('n', 2, [[2/3, 0.5], [1/3, 0.5]], evidence=['StartingPlayer'], evidence_card=[2])
 
-'''
-Din grafice se observa urmatoarele:
+cpd_m = TabularCPD('m', 2, [[2/3, 0.5], [1/3, 0.5]], evidence=['n'], evidence_card=[2])
 
-Caz 1: Numarul de clienti care cumpara un produs ramane neschimbat
-    Numarul total de clienti scade daca probabilitatea de a cumpara un produs creste
-Caz 2: Probabilitatea de a cumpara un produs ramane neschimbata
-    Numarul total de clienti creste daca numarul de clienti care cumpara un produs creste
+model.add_cpds(cpd_starting_player, cpd_n, cpd_m)
 
-De asemenea numarul total de clienti este afectat mai puternic de cresterea numarului de clienti care
-cumpara un produs si mai putin de probabilitatea de a cumpara un produs
-'''
+model.check_model()
 
-y=[0,5,10]
-teta=[0.2, 0.5]
-
-posteriors=[]
-for i in range(0, len(y)):
-    for j in range(0, len(teta)):
-        with pm.Model() as model:
-            n= pm.Poisson("n", mu=10)
-            pm.Binomial("buyers"+str(i)+" "+str(j),n=n,p=teta[j],observed=y[i])
-            idata_t = pm.sample(100, return_inferencedata=True,cores=1)
-            posteriors.append((y[i], teta[j], idata_t))
-
-
-fig, axes = plt.subplots(nrows=len(y), ncols=len(teta), figsize=(12, 8))
-
-for i, (Y, theta, trace) in enumerate(posteriors):
-    ax = axes[i // len(teta), i % len(teta)]
-    # print(i // len(teta), i % len(teta))
-    az.plot_posterior(trace,var_names=['n'], ax=ax)
-    ax.set_title(f'Y={Y}, θ={theta}')
-
-plt.tight_layout()
+pos = nx.circular_layout(model)
+nx.draw(model, pos=pos, with_labels=True, node_size=4000, font_weight='bold', node_color='skyblue')
 plt.show()
+
+# ex3
+infer = VariableElimination(model)
+
+prob_jucator0_stiind_m = infer.query(variables=['StartingPlayer'], evidence={'m': 1})
+print(prob_jucator0_stiind_m)
