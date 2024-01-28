@@ -1,0 +1,26 @@
+▶ Modele Liniare Generalizate (MLG):
+    ▶ Extinde conceptul de regresie liniară pentru a acoperi o gamă mai largă de situații,
+      inclusiv datele cu distribuții de probabilitate non-normale și variabile dependente de tipuri diferite.
+    ▶ Utilizează trei componente cheie: o funcție de link, o funcție de dispersie și un predictor liniar.
+    ▶ Exemple includ regresia logistică și regresia Poisson.
+
+▶ Regresia Logistică:
+    ▶ Folosită pentru a modela relația dintre o variabilă dependentă binară și una sau mai multe variabile independente.
+    ▶ Folosește funcția logistică pentru a transforma un predictor liniar într-o probabilitate între 0 și 1.
+    ▶ Este utilizată în probleme de clasificare binară și poate fi extinsă pentru probleme de clasificare multiclass.
+
+▶ Regresia Softmax:
+    ▶ Utilizată în probleme de clasificare multiclass, extinzând ideile din regresia logistică.
+    ▶ Folosește funcția softmax pentru a transforma scorurile finale ale claselor în probabilități.
+    ▶ Permite modelului să prezică o distribuție de probabilități peste multiple clase.
+
+▶ Modele Discriminative și Generative:
+▶ Modele Discriminative:
+    ▶ Se concentrează pe învățarea directă a frontierei de decizie dintre clase în setul de date.
+    ▶ Obiectivul principal este de a maximiza probabilitatea condițională a clasei date datele de intrare: P(Y|X).
+    ▶ Exemple includ regresia logistică și suportul de vectori de mașini.
+
+▶ Modele Generative:
+    ▶ Se concentrează pe învățarea distribuției complete a datelor, inclusiv distribuția condițională a claselor și a caracteristicilor: P(X, Y).
+    ▶ Pot fi utilizate pentru generarea de noi exemple din această distribuție.
+    ▶ Exemple includ rețelele generative adversariale (GAN-uri) și modelele Naive Bayes.

@@ -1,0 +1,26 @@
+▶ Regresia Liniară Robustă:
+    ▶ Abordare care încearcă să facă regresia liniară mai rezistentă la influențele unor puncte de date aberante sau atipice.
+    ▶ Utilizează funcții de greutate pentru a minimiza impactul punctelor cu devieri mari.
+    ▶ Potrivită pentru seturi de date în care există date care se abat semnificativ de la modelul liniar.
+
+▶ Regresia Liniară Ierarhică:
+    ▶ Extinde regresia liniară pentru a aborda structurile ierarhice ale datelor.
+    ▶ Potrivită pentru seturi de date în care observațiile pot fi grupate sau ierarhizate în mod natural.
+    ▶ Poate să considere efectele la nivel de grup și individuale.
+
+▶ Probleme Legate de Modelul Liniar:
+    ▶ Supoziții necorespunzătoare: Regresia liniară presupune că relația dintre variabila dependentă și variabilele independente este liniară.
+        Dacă această supoziție este încălcată, performanța modelului poate fi afectată.
+    ▶ Colinearitate: Când două sau mai multe variabile independente sunt puternic corelate, poate apărea colinearitatea,
+        ceea ce face dificilă identificarea contribuției individuale a fiecărei variabile la model.
+    ▶ Overfitting sau underfitting: Utilizarea unui model prea complex poate duce la overfitting (prea bine adaptat la datele de antrenament, dar slab generalizat) sau underfitting (modelul este prea simplu pentru a captura relațiile din date).
+
+▶ Interacțiuni între Variabile:
+    ▶ În unele cazuri, relația dintre variabila dependentă și variabilele independente poate fi influențată de interacțiuni între aceste variabile.
+    ▶ Interacțiunile pot fi liniare sau non-liniare și ar trebui luate în considerare pentru a obține o înțelegere mai completă a modelului.
+
+▶ Dispersie Variabilă:
+    ▶ Se referă la variabilitatea sau dispersia datelor în jurul liniei de regresie.
+    ▶ O dispersie mică indică o ajustare bună a modelului la date, în timp ce o dispersie mare poate indica că modelul nu explică bine variabilitatea datelor.
+    ▶ Evaluarea dispersiei variabilei poate oferi indicii cu privire la performanța generală a modelului liniar.
+
